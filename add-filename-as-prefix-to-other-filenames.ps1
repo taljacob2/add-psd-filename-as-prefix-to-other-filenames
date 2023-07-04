@@ -48,3 +48,5 @@ function Add-Filename-As-Prefix-To-Other-Filenames {
         }
     }
 }
+
+Add-Filename-As-Prefix-To-Other-Filenames -Path "ProjectName.psd" -Ext "jpg"
