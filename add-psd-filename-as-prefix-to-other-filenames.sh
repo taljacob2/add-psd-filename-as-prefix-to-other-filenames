@@ -55,7 +55,7 @@ addFilenameAsPrefixToOtherFilenames() {
 
     for fileToRename in *."$fileExtensionToAddThePrefixToTheirName"; do
         if [ -f "$fileToRename" ]; then
-            $(mv "$fileToRename" "$FILE_NAME_WITHOUT_EXTENSION_$fileToRename")
+            $(mv "$fileToRename" "$FILE_NAME_WITHOUT_EXTENSION""_""$fileToRename")
         fi
     done
 }
@@ -63,8 +63,8 @@ addFilenameAsPrefixToOtherFilenames() {
 addPsdFilenameAsPrefixToOtherFilenames() {
     psdFile=$(ls | grep *.psd)
     addFilenameAsPrefixToOtherFilenames $psdFile "jpg"
-    # addFilenameAsPrefixToOtherFilenames $psdFile "jpeg"
-    # addFilenameAsPrefixToOtherFilenames $psdFile "png"
+    addFilenameAsPrefixToOtherFilenames $psdFile "jpeg"
+    addFilenameAsPrefixToOtherFilenames $psdFile "png"
 }
 
 addPsdFilenameAsPrefixToOtherFilenames
