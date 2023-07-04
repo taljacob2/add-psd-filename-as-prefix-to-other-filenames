@@ -56,11 +56,11 @@ function Add-Filename-As-Prefix-To-Other-Filenames {
     }
 }
 
-function Add-First-Psd-Filename-As-Prefix-To-Other-Filenames {
+function Add-Psd-Filename-As-Prefix-To-Other-Filenames {
     $psdFile = Get-ChildItem -Filter *.psd
     Add-Filename-As-Prefix-To-Other-Filenames -Item $psdFile -Ext "jpg"
     Add-Filename-As-Prefix-To-Other-Filenames -Item $psdFile -Ext "jpeg"
     Add-Filename-As-Prefix-To-Other-Filenames -Item $psdFile -Ext "png"
 }
 
-Add-First-Psd-Filename-As-Prefix-To-Other-Filenames
+Add-Psd-Filename-As-Prefix-To-Other-Filenames
