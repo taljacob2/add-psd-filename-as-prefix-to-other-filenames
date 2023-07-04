@@ -10,6 +10,9 @@ function Add-Filename-As-Prefix-To-Other-Filenames {
     a prefix to all the files with the given
     `FileExtensionToAddThePrefixToTheirName` extension in its directory.
 
+    .PARAMETER Item
+    Another way to send the `PathOfFileToTakeItsNameAsPrefix` as a parameter.
+
     .PARAMETER FileExtensionToAddThePrefixToTheirName
     Specify the target file extension, so all of the files with this file
     extension that are located in the directory of the given
@@ -35,11 +38,15 @@ function Add-Filename-As-Prefix-To-Other-Filenames {
     #>
 
     param (
-        [parameter(mandatory)][Alias("Path")][string]$PathOfFileToTakeItsNameAsPrefix,
+        [parameter()][Alias("Path")][string]$PathOfFileToTakeItsNameAsPrefix,
+        [parameter()][System.IO.FileSystemInfo]$Item,
         [parameter(mandatory)][Alias("Ext", "Extension")][string]$FileExtensionToAddThePrefixToTheirName
     )
 
-    $file = Get-Item $PathOfFileToTakeItsNameAsPrefix
+    $file = $Item
+    if ($PathOfFileToTakeItsNameAsPrefix) {
+        $file = Get-Item $PathOfFileToTakeItsNameAsPrefix
+    }
 
     Get-ChildItem $file.Directory | ForEach { 
         $fileNameWithoutExtention = [System.IO.Path]::GetFileNameWithoutExtension($file)
@@ -49,4 +56,11 @@ function Add-Filename-As-Prefix-To-Other-Filenames {
     }
 }
 
-Add-Filename-As-Prefix-To-Other-Filenames -Path "ProjectName.psd" -Ext "jpg"
+function Add-First-Psd-Filename-As-Prefix-To-Other-Filenames {
+    $psdFile = Get-ChildItem -Filter *.psd
+    Add-Filename-As-Prefix-To-Other-Filenames -Item $psdFile -Ext "jpg"
+    Add-Filename-As-Prefix-To-Other-Filenames -Item $psdFile -Ext "jpeg"
+    Add-Filename-As-Prefix-To-Other-Filenames -Item $psdFile -Ext "png"
+}
+
+Add-First-Psd-Filename-As-Prefix-To-Other-Filenames
