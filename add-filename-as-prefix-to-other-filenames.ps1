@@ -6,7 +6,8 @@ param (
 $file = Get-Item $PathOfFileToTakeItsNameAsPrefix
 
 Get-ChildItem $file.Directory | ForEach { 
+    $fileNameWithoutExtention = [System.IO.Path]::GetFileNameWithoutExtension($file)
     if ($_.Name.EndsWith(".$FileExtensionToAddThePrefixToTheirName")){
-        $_ | Rename-Item -NewName "hello_$_"
+        $_ | Rename-Item -NewName "$fileNameWithoutExtention $_"
     }
 }
