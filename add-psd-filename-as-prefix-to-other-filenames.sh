@@ -46,9 +46,9 @@ addFilenameAsPrefixToOtherFilenames() {
 
 addPsdFilenameAsPrefixToOtherFilenames() {
     psdFile=$(ls | grep *.psd)
-    addFilenameAsPrefixToOtherFilenames $psdFile "jpg"
-    addFilenameAsPrefixToOtherFilenames $psdFile "jpeg"
-    addFilenameAsPrefixToOtherFilenames $psdFile "png"
+    addFilenameAsPrefixToOtherFilenames "$psdFile" "jpg"
+    addFilenameAsPrefixToOtherFilenames "$psdFile" "jpeg"
+    addFilenameAsPrefixToOtherFilenames "$psdFile" "png"
 }
 
 addPsdFilenameAsPrefixToOtherFilenames
