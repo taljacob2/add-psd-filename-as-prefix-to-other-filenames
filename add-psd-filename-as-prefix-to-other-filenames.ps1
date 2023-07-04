@@ -32,9 +32,6 @@ function Add-Filename-As-Prefix-To-Other-Filenames {
 
     .EXAMPLE
     Add-Filename-As-Prefix-To-Other-Filenames -Path "C:\Program Files\demo.txt" -Ext "jpg"
-
-    .LINK
-    Online version: https://github.com/taljacob2/add-filename-as-prefix-to-other-filenames
     #>
 
     param (
